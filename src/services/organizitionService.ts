@@ -7,11 +7,7 @@ export const createorganizitionService = async (orgs: organizitionDTO[]): Promis
         orgs.forEach(async (org)  => {
             const dbneworg = new OrganizitionModel(org);
             await dbneworg.save()
-        });
-        // for (const org of orgs) {
-        //     const dbneworg = new OrganizitionModel(org);
-        //     await dbneworg.save()
-        // }
+        });        
         console.log(orgs)        
         return orgs;
     } catch (err) {
