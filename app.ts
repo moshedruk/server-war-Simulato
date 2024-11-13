@@ -9,6 +9,7 @@ import http from 'http'
 import { Server } from 'socket.io'
 import routerOrganiztions from './src/router/organizition'
 import { connectToMongo } from './src/config/connectDB'
+import routerUser from './src/router/login'
 
 const PORT = process.env.PORT || 3000
 const app = express()
@@ -43,7 +44,7 @@ connectToMongo()
 
 
 app.use('/api/Organiztions',routerOrganiztions)
-// app.use('/api/users', routerUser)
+app.use('/api/users', routerUser)
 // app.use('/api/candidates', routerCandidate)
 // app.use('/api/vote', routerVote)
 
