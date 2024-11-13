@@ -19,3 +19,12 @@ export const createorganizitionService = async (orgs: organizitionDTO[]): Promis
         throw err
     }
 }
+export const getorganizitionService = async (): Promise<organizitionDTO[]> => {
+    try {
+        const dbOrgs = await OrganizitionModel.find();
+        return dbOrgs
+    } catch (err) {
+        console.log(err);
+        throw err
+    }
+}
