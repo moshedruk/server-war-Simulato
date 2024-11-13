@@ -18,7 +18,7 @@ export const userLoginService = async (user: IloginDto) => {
           user_id: userFromDatabase._id,          
           username: userFromDatabase.username,
         },
-        process.env.JWT_SECRET!,
+        process.env.secretKey!,
         {
           expiresIn: "10m",
         }

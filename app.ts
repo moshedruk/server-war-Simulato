@@ -9,7 +9,7 @@ import http from 'http'
 import { Server } from 'socket.io'
 import routerOrganiztions from './src/router/organizition'
 import { connectToMongo } from './src/config/connectDB'
-import routerUser from './src/router/login'
+import routerUser from './src/router/user'
 
 const PORT = process.env.PORT || 3000
 const app = express()
