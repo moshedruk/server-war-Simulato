@@ -7,6 +7,8 @@ import cors from 'cors'
 // import routerVote from './routes/votesRouter'
 import http from 'http'
 import { Server } from 'socket.io'
+import routerOrganiztions from './src/router/organizition'
+import { connectToMongo } from './src/config/connectDB'
 
 const PORT = process.env.PORT || 3000
 const app = express()
@@ -36,9 +38,11 @@ io.on('connection', (socket) => {
 
 app.use(express.json())
 app.use(cors())
-// connectToMongo()
+connectToMongo()
 
-app.use('/',()=>{console.log("home")})
+
+
+app.use('/api/Organiztions',routerOrganiztions)
 // app.use('/api/users', routerUser)
 // app.use('/api/candidates', routerCandidate)
 // app.use('/api/vote', routerVote)
