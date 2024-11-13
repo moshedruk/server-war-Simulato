@@ -46,13 +46,11 @@ const getspeedforRocket = async (namerocket:string) => {
     })
     return time
 }
-const getinformitionforRocket = async (namerocket:string) => {
-    
+const getinformitionforRocket = async (namerocket:string) => {    
     const inf = missiles.filter(missile =>{
         if(missile.name===namerocket){
             return missile.speed
         }
-
     })
     return inf
 }
