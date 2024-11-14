@@ -5,6 +5,6 @@ export interface registerDTO{
     username: string;
     password: string;
     organization_id: string;       
-    location?: location | null;
+    location?: string | null;
     
 }
