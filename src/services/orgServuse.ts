@@ -81,10 +81,12 @@ export const getOrganizitionService = async(name:string) => {
         throw err
     }
 }
-export const getorganizitionServiceByid = async (id:string): Promise<organizitionDTO[]> => {
-    try {      
-       
-        const dbOrg = await OrganizitionModel.find({_id:id});        
+export const getorganizitionServiceByid = async (aname:IgetorganizitionDto): Promise<organizitionDTO|any> => {
+    try {          
+        const {name} = aname
+        console.log("cccccccccc")   
+        console.log(name)
+        const dbOrg = await OrganizitionModel.findOne({name:name});        
         return dbOrg
     } catch (err) {
         console.log(err);
