@@ -2,11 +2,11 @@ import { IeventsDTO } from "../DTOs/event";
 import eventModel from "../models/event";
 
 
-export const updeteStutusforRocket = async (namerocket:string) => {
+export const updeteStutusforRocket = async (namerocket:string,newstatus:string) => {
     try {
         const rocket = await eventModel.findOneAndUpdate(
             { name: namerocket },
-            { status: "inactive" },
+            { status: "false" },
             { new: true }
         );
         if (!rocket) {
