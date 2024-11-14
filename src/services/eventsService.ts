@@ -21,14 +21,26 @@ export const updeteStutusforRocket = async (namerocket:string,newstatus:string) 
 
 export const createEvent = async (newEvent:IeventsDTO) => {
     try {
-        const {username,location,namerocket} = newEvent
+        const {nameattack,location,namerocket} = newEvent
         const event = new eventModel({
-            username,
-            location,
-            namerocket,
-            status:"active"            
+            nameattack,
+            location:location,
+            namerocket ,          
+            status:"launched"            
         })
         await event.save();        
+        return event;
+    } catch (error ) {
+        throw error
+    }
+}
+export const getEvent = async (nameEvent:string) => {
+    try {
+        const event = await eventModel.find({
+            nameattack: nameEvent });        
+        if (!event) {
+            throw new Error("Event not found");
+        }       
         return event;
     } catch (error ) {
         throw error

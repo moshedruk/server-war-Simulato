@@ -6,10 +6,10 @@ import { Ievents } from "../interface/events";
 
 
 const eventSchema = new mongoose.Schema<Ievents>({
-    username: { type: String, required: true },
-    location: { type: String, required: true },
-    namerocket: { type: String, required: true },
-    status: { type: String, required: true },
+    nameattack: { type: String,  },
+    location: { type: String,  },
+    namerocket: { type: String,  },
+    status: { type: String },
       
 });
 // Create a Model. and export it

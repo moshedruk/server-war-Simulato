@@ -34,8 +34,8 @@ export const userLoginService = async (user: IloginDto) => {
 
 export const createUserService = async (user: registerDTO): Promise<registerDTO | any> => {
     try {
-        const { username, password, organization_id, ...the_rest_of_the_things } = user
-        const Organizitionmodel = await OrganizitionModel.findOne({ _id: organization_id }).lean()
+        const { username, password, organization_name, ...the_rest_of_the_things } = user
+        const Organizitionmodel = await OrganizitionModel.findOne({ name: organization_name }).lean()
         if (!Organizitionmodel) {
             throw new Error("Organization not found")
         }
@@ -53,4 +53,15 @@ export const createUserService = async (user: registerDTO): Promise<registerDTO 
         console.log(err);
         throw err
     }
+}
+
+export const getuser = async(user: registerDTO)=> {
+  try {
+    const { username } = user
+    const userFromDatabase = await UserModle.findOne({ username: username }).lean();
+    if (!userFromDatabase) throw new Error("user not found");
+    return userFromDatabase;
+  } catch (err) {
+    throw err;
+  }
 }

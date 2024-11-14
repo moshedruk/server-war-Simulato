@@ -3,7 +3,7 @@ import { missiles } from "../utils/missiles";
 
 interface changeinventory {
     name: string
-    namerocket: string
+    rocket: string
 }
 
 
@@ -19,15 +19,15 @@ export const Missileinventorychange = async (rocket: changeinventory) => {
         }
         const tempUser = user.organization.resources
         tempUser.map(resource => {
-            if (resource.name === rocket.namerocket && resource.amount > 0) {
+            if (resource.name === rocket.rocket && resource.amount > 0) {
                 resource.amount--
             }
         })
         await user.save();
-        const timerocket = await getspeedforRocket(rocket.namerocket)
+        const timerocket = await getspeedforRocket(rocket.rocket)
         console.log(tempUser)
         return {
-            status: "DONE",timerocket
+            user
         };
     } catch (err) {
         return {
@@ -37,7 +37,7 @@ export const Missileinventorychange = async (rocket: changeinventory) => {
     }
 };
 
-const getspeedforRocket = async (namerocket:string) => {
+export const getspeedforRocket = (namerocket:string) => {
     let time = 0
     missiles.filter(missile =>{
         if(missile.name===namerocket){

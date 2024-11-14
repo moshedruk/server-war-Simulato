@@ -1,6 +1,6 @@
 
 export interface Ievents {
-    username: string;
+    nameattack: string;
     location: string;
     namerocket: string;
     status: string;

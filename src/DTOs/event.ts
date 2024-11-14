@@ -1,7 +1,6 @@
 
 export interface IeventsDTO {
-    username: string;
+    nameattack: string;
     location: string;
     namerocket: string;
-    status: string;
 }

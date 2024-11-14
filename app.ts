@@ -12,33 +12,20 @@ import { connectToMongo } from './src/config/connectDB'
 import routerUser from './src/router/user'
 import { changeinventory } from './src/controllers/missilesController'
 import routermissiles from './src/router/display_missiles'
+import { handleSocketConnection } from './src/socket/io';
+import routerevent from './src/router/evenr'
 
 const PORT = process.env.PORT || 3000
 const app = express()
 export const server = http.createServer(app)
-const io = new Server(server, {
+export  const io = new Server(server, {
     cors: {
         origin: '*',
         methods: '*'
        },
 });
 
-io.on('connection', (socket) => {
-    console.log(`user connected ${socket.id}`);
-    
-    // מאזין לאירוע 'newvote' שמגיע מלקוח כלשהו
-    // socket.on('newvote', () => {
-    //     console.log("Received 'newvote' event");
-        
-    //     // שידור האירוע 'newvote' לכל הלקוחות המחוברים
-    //     io.emit('newvote');
-    // });
-
-    socket.on('disconnect', () => {
-        console.log(`user disconnected ${socket.id}`);
-    });
-});
-
+io.on("connection", handleSocketConnection)
 app.use(express.json())
 app.use(cors())
 connectToMongo()
@@ -48,6 +35,7 @@ connectToMongo()
 app.use('/api/Organiztions',routerOrganiztions)
 app.use('/api/users', routerUser)
 app.use('/api/missiles',routermissiles)
+app.use('/api/event',routerevent)
 
 // app.use('/api/candidates', routerCandidate)
 // app.use('/api/vote', routerVote)
